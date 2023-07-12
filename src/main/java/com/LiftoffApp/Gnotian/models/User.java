@@ -9,8 +9,7 @@ import java.util.List;
 public class User extends AbstractEntity{
     private String username;
     private String password;
-    //private List<Artist> artistTopFive = new ArrayList<>();
-    private List<Review> userReviews = new ArrayList<>();
+
 
     public User(){
     }
@@ -29,5 +28,5 @@ public class User extends AbstractEntity{
 
     public void setPassword(String password) { this.password = password; }
 
-    public List<Review> getUserReviews() { return userReviews; }
+
 }

@@ -13,7 +13,7 @@ const Navigation = ({ loggedIn, onLogout }) => {
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link" to="/"> 
-               <img src="...\frontend\public\logo192.png" alt="logo" />
+               <img src="path" alt="logo" />
           </Link>
         </li>
         <li className="nav-item">

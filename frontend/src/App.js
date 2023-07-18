@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Profile from './commponets/Profile';
 import Home from './commponets/Home';
 import LoginPage from './commponets/Login';
+import gnotianlogo from './assets/gnotianlogo.png';
 
 
 const Navigation = ({ loggedIn, onLogout }) => {
@@ -13,7 +14,7 @@ const Navigation = ({ loggedIn, onLogout }) => {
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link" to="/"> 
-               <img src="...\frontend\public\logo192.png" alt="logo" />
+               <img src={gnotianlogo} width="50px" height="50px" alt="logo" />
           </Link>
         </li>
         <li className="nav-item">

@@ -9,10 +9,30 @@ const profileData = {
   };
 
   const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"]
+  const reviews = [
+    {
+      artist: "Ed Sheeran",
+      body: "Ed Sheeran is cool"
+    },   
+    {
+      artist: "The Weeknd",
+      body: "The Weeknd is cool"
+    },
+    {
+      artist: "Bruno Mars",
+      body: "Bruno Mars is cool"
+    },
+    {
+      artist: "Taylor Swift",
+      body: "Taylor Swift is cool"
+    }
+  ];
 
+
+  
   return (
     <>
-      <div className="col-md-8 offset-md-4">
+      <div className="col-md-8 offset-md-5">
         <h1>Profile Page</h1>
         <h2>Welcome, {username}!</h2>
           <div>
@@ -22,6 +42,7 @@ const profileData = {
           </div>
       </div>
 
+    <div>
       <div className="col-md-8 offset-md-2">
         <ul className="list-group">
           <span><h2>top 5 artists</h2></span>
@@ -30,6 +51,19 @@ const profileData = {
           ))}
         </ul>
       </div>
+
+      <div className="col-md-8 offset-md-2">
+        <ul className="list-group">
+          <span><h2>Reviews</h2></span>
+          {reviews.map((review, index) => (
+            <li key={index} className="list-group-item">
+              <h4>Artist: {review.artist}</h4>
+              <p>{review.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
 </>
   );
 };

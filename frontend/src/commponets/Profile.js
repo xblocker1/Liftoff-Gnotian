@@ -8,6 +8,8 @@ const profileData = {
     email: 'ChrisHahn97@example.com',
   };
 
+  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"]
+
   return (
     <>
       <div className="col-md-8 offset-md-4">
@@ -23,11 +25,9 @@ const profileData = {
       <div className="col-md-8 offset-md-2">
         <ul className="list-group">
           <span><h2>top 5 artists</h2></span>
-          <li className="list-group-item">artist 1</li>
-          <li className="list-group-item">artist 2</li>
-          <li className="list-group-item">artist 3</li>
-          <li className="list-group-item">artist 4</li>
-          <li className="list-group-item">artist 5</li>
+          {artist.map(artist => (
+            <li className="list-group-item">{artist}</li>
+          ))}
         </ul>
       </div>
 </>

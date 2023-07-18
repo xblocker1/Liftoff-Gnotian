@@ -8,7 +8,14 @@ const profileData = {
     email: 'ChrisHahn97@example.com',
   };
 
-  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"]
+  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"];
+
+   const reviews = [
+    {
+      artist: "Ed Sheeran",
+      body: "Ed Sheeran is cool"
+    }
+  ];
 
   return (
     <>
@@ -30,6 +37,20 @@ const profileData = {
           ))}
         </ul>
       </div>
+
+
+      <div className="col-md-8 offset-md-2">
+        <ul className="list-group">
+          <span><h2>Reviews</h2></span>
+          {reviews.map((review, index) => (
+            <li key={index} className="list-group-item">
+              <h4>Artist: {review.artist}</h4>
+              <p>{review.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
 </>
   );
 };

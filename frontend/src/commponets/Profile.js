@@ -8,18 +8,31 @@ const profileData = {
     email: 'ChrisHahn97@example.com',
   };
 
-  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"];
-
-   const reviews = [
+  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"]
+  const reviews = [
     {
       artist: "Ed Sheeran",
       body: "Ed Sheeran is cool"
+    },   
+    {
+      artist: "The Weeknd",
+      body: "The Weeknd is cool"
+    },
+    {
+      artist: "Bruno Mars",
+      body: "Bruno Mars is cool"
+    },
+    {
+      artist: "Taylor Swift",
+      body: "Taylor Swift is cool"
     }
   ];
 
+
+  
   return (
     <>
-      <div className="col-md-8 offset-md-4">
+      <div className="col-md-8 offset-md-5">
         <h1>Profile Page</h1>
         <h2>Welcome, {username}!</h2>
           <div>
@@ -29,6 +42,7 @@ const profileData = {
           </div>
       </div>
 
+    <div>
       <div className="col-md-8 offset-md-2">
         <ul className="list-group">
           <span><h2>top 5 artists</h2></span>
@@ -37,7 +51,6 @@ const profileData = {
           ))}
         </ul>
       </div>
-
 
       <div className="col-md-8 offset-md-2">
         <ul className="list-group">
@@ -50,7 +63,7 @@ const profileData = {
           ))}
         </ul>
       </div>
-
+    </div>
 </>
   );
 };

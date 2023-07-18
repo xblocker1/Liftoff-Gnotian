@@ -15,10 +15,13 @@ const Navigation = ({ loggedIn, onLogout }) => {
         <li className="nav-item">
           <Link className="nav-link" to="/"> 
                <img src={gnotianlogo} width="50px" height="50px" alt="logo" />
+               <span>Gnotian</span>
           </Link>
+          
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/profile"> Profile </Link>
+          <Link  className="nav-link" to="/profile"> Profile 
+          </Link>
         </li>
         <li className="nav-item">
           {loggedIn ? (

@@ -14,7 +14,7 @@ const Navigation = ({ loggedIn, onLogout }) => {
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link" to="/"> 
-               <img src={gnotianlogo} width="50px" height="50px" alt="logo" />
+               <img src={gnotianlogo} width="75px" height="75px" alt="logo" />
           </Link>
         </li>
         <li className="nav-item">

@@ -11,16 +11,17 @@ import gnotianlogo from './assets/gnotianlogo.png';
 const Navigation = ({ loggedIn, onLogout }) => {
   return (
     <nav>
-      <ul className="nav">
+      <ul className="nav ms-auto"> {/* Add ms-auto class to the ul */}
         <li className="nav-item">
           <Link className="nav-link" to="/"> 
-               <img src={gnotianlogo} width="50px" height="50px" alt="logo" />
-               <span>Gnotian</span>
+            <img src={gnotianlogo} width="50px" height="50px" alt="logo" />
+            <span>Gnotian</span>
           </Link>
-          
         </li>
-        <li className="nav-item">
-          <Link  className="nav-link" to="/profile"> Profile 
+        <li className="navbar-nav ms-auto">
+          <Link className="nav-link" to="/profile"> 
+            <img src={gnotianlogo} width="50px" height="50px" alt="logo" />
+            <span>Profile</span>
           </Link>
         </li>
         <li className="nav-item">

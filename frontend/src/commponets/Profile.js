@@ -4,64 +4,96 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 function Profile({ username }) {
-  const [reviews, setReviews] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [newReview, setNewReview] = useState({
-    artist: '',
-    body: '',
-  });
-  
-  
-  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"];
-  const profileData = {
+
+  const [showEditModal, setShowEditModal] = useState(false);
+ 
+  const [editedProfileData, setEditedProfileData] = useState({
     name: 'Chris Hahn',
     age: 26,
     email: 'ChrisHahn97@example.com',
+  });
+
+  const artist = ["Ed Sheeran", "The Weeknd", "Bruno Mars", "Taylor Swift", "Rihanna"];
+
+
+  const handleEditProfile = () => {
+    setShowEditModal(true);
   };
 
-  const handleAddReview = () => {
-    setShowModal(true);
-  };
+  const handleSaveEditedProfile = () => {
 
-const handleSaveReview = async () => {
-  try {
-    // Send the new review data to the backend API endpoint
-    const response = await axios.post('/api/reviews', newReview);
+    // we need to send a backend request to update the user's profile
 
-    // Assuming the backend responds with a success message or data
-    console.log('Review saved successfully:', response.data);
-
-    // Update the local state with the new review
-    const updatedReviews = [...reviews, newReview];
-    setReviews(updatedReviews);
-
-    // Clear the newReview state for the next time
-    setNewReview({
-      artist: '',
-      body: '',
+    setEditedProfileData({
+      name: editedProfileData.name,
+      age: editedProfileData.age,
+      email: editedProfileData.email,
     });
-  } catch (error) {
-    // Handle errors if the POST request fails
-    console.error('Error saving review:', error);
-    // You can also show an error message to the user here
-  } finally {
-    // Close the modal after saving the review (whether successful or not)
-    setShowModal(false);
-  }
-};
 
+    setShowEditModal(false);
+    
+  };
 
-  return (
+    return (
     <>
       <div className="col-md-8 offset-md-5">
         <h1>Profile Page</h1>
-        <h2>Welcome, {username}!</h2>
+        <h2>Welcome, {editedProfileData.name}!</h2>
         <div>
-          <h3>Name: {profileData.name}</h3>
-          <p>Age: {profileData.age}</p>
-          <p>Email: {profileData.email}</p>
+          <p>Age: {editedProfileData.age}</p>
+          <p>Email: {editedProfileData.email}</p>
+          <button className="btn btn-primary" onClick={handleEditProfile}>
+            Edit Profile
+          </button>
         </div>
       </div>
+
+
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              value={editedProfileData.name}
+              onChange={(e) => setEditedProfileData({ ...editedProfileData, name: e.target.value })}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="age">Age:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="age"
+              value={editedProfileData.age}
+              onChange={(e) => setEditedProfileData({ ...editedProfileData, age: e.target.value })}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">email:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="email"
+              value={editedProfileData.email}
+              onChange={(e) => setEditedProfileData({ ...editedProfileData, email: e.target.value })}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSaveEditedProfile}>
+            Save Profile
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <div className="col-md-8 offset-md-2">
         <ul className="list-group">
@@ -72,56 +104,7 @@ const handleSaveReview = async () => {
         </ul>
       </div>
 
-      <div className="col-md-8 offset-md-2">
-        <ul className="list-group">
-          <span><h2>Reviews</h2></span>
-          {reviews.map((review, index) => (
-            <li key={index} className="list-group-item">
-              <h4>Artist: {review.artist}</h4>
-              <p>{review.body}</p>
-            </li>
-          ))}
-        </ul>
-        <button className="btn btn-primary" onClick={handleAddReview}>
-          Add Review
-        </button>
-      </div>
-
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add Review</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="form-group">
-            <label htmlFor="artist">Artist:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="artist"
-              value={newReview.artist}
-              onChange={(e) => setNewReview({ ...newReview, artist: e.target.value })}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="body">Review:</label>
-            <textarea
-              className="form-control"
-              id="body"
-              value={newReview.body}
-              onChange={(e) => setNewReview({ ...newReview, body: e.target.value })}
-            />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleSaveReview}>
-            Save Review
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+      </>
   );
 }
 

@@ -5,14 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-    <h2>GNOTION</h2>
+    <h2 href="">GNOTION</h2>
     <a href="/profile">View Your Profile</a>
 
     <form th:action="@{/search}" method = "post">
-        <p>
-            <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
-        </p>
+        <input type="text" name="searchTerm" id="searchTerm" />
         <input type="submit" value="Search" />
     </form>
 </body>

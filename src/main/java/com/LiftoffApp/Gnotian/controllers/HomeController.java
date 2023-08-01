@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-    @RequestMapping("")
-    public String index(Model model){
-        return "index";
-    }
-
     @PostMapping("search")
     public String displaySearchResults(Model model, @RequestParam String searchTerm){
         model.addAttribute("searchTerm", searchTerm);
@@ -24,5 +19,11 @@ public class HomeController {
     @GetMapping("profile")
     public String displayProfile(Model model){
         return "profile";
+    }
+
+
+    @GetMapping("search")
+    public String displaySearch(Model model){
+        return "search";
     }
 }

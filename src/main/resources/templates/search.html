@@ -5,8 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<p>Search results here</p>
-<p>(everything will redirect to Nickelback)</p>
+<a href="/profile">View Your Profile</a>
+
+<form th:action="@{/search}" method = "post">
+    <input type="text" name="searchTerm" id="searchTerm" />
+    <input type="submit" value="Search" />
+</form>
 <p th:text="${'You searched: ' + searchTerm}"></p>
 
 

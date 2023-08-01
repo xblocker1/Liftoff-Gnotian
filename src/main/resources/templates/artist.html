@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+<a href="/profile">View Your Profile</a>
+
+
+<form th:action="@{/search}" method = "post">
+    <p>
+        <label for="searchTerm">Keyword:</label>
+        <input type="text" name="searchTerm" id="searchTerm" />
+    </p>
+    <input type="submit" value="Search" />
+</form>
 
 </body>
 </html>

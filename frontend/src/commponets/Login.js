@@ -15,7 +15,6 @@ const LoginPage = ({ onLogin }) => {
   
       if (username === 'admin' && password === 'password') {
       navigate('/profile'); // Redirect to the profile page
-      // call to backend
 
     } else {
       alert('Invalid username or password');

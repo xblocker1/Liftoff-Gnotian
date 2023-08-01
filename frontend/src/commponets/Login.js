@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginPage = ({ onLogin }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Perform login validation here
 
-    if (username === 'admin' && password === 'password') {
-      onLogin();
+    try {
+      // Perform login validation here if needed
+  
+      if (username === 'admin' && password === 'password') {
       navigate('/profile'); // Redirect to the profile page
       // call to backend
 
     } else {
       alert('Invalid username or password');
+    }
+
+      // Send login data to the server
+      const response = await axios.post('/api/login', { username, password });
+
+      // Assuming the server responds with a token or user data upon successful login
+      const token = response.data.token; // or response.data.user
+
+      onLogin(token);
+
+      navigate('/profile');
+    } catch (error) {
+      // Handle login error, show an error message, etc.
+      console.error('Login failed:', error);
     }
   };
 

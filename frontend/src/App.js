@@ -7,6 +7,7 @@ import Home from './commponets/Home';
 import LoginPage from './commponets/Login';
 import gnotianlogo from './assets/gnotianlogo.png';
 
+const username = 'chris';
 
 const Navigation = ({ loggedIn, onLogout }) => {
   return (

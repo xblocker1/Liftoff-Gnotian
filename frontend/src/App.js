@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Searcher from './components/Searcher';
-import Playback from './components/Playback';
 
 function App() {
   

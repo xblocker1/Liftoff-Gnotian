@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios';
-import Playback from './Playback';
+import { render } from '@testing-library/react';
 
 function Searcher(props) {
     const [SearchKey, setSearchKey] = useState("")
@@ -47,28 +47,27 @@ function Searcher(props) {
                 // "url" :
                 "height": 300,
                 "width": 300
-
-    //     var artistImage = () => {
-    //         return artists.map(artist => (
-    //             <div key={artist.id}>
-    //                 {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-    // //             {artist.name}
-    //             </div>
-    //         ))
-    //     }
             }
         })
         setImages(artistImage.data.artists)
-
+    
     }
-    const renderArtists = () => {
-        return artists.map(artist => (
-            <div key={artist.id}>
-                {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-                {artist.name}
-            </div>
-        ))
-}
+
+        const renderArtists = (index) => {
+            const artist = artists[index];
+            if (artist) {
+                return (
+                <div key={artist.id}>
+                    {artist.images.length ? (<img width={"50%"} src={artist.images[0].url} alt=""/> ):( <div>No Image</div>
+                    )}
+                <div>{artist.name}</div>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    };
+
 
     return (
         <>
@@ -80,10 +79,10 @@ function Searcher(props) {
                 onChange={(e) => {setSearchKey(e.target.value)}}
             />
             <button onClick={searchArtist}>Search</button>
-            {/* {renderArtists} */}
+            {renderArtists(0)}
         </div>
         {
-            tracks.slice(0, 1).map(track => (
+            tracks.map(track => (
                 <div key={track.id} >
                     <ul>
                         <li > {track.name}</li>
@@ -91,9 +90,8 @@ function Searcher(props) {
                 </div>
             ))
         }
-        
         </>
     )
-}
+    }
 
 export default Searcher

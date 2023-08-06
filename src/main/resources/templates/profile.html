@@ -6,14 +6,21 @@
 </head>
 <body>
 <h2>GNOTION</h2>
-<a href="">Home</a>
-<a href="/profile">View Your Profile</a>
+<a href="/">Back to the Homepage</a>
 
 <form th:action="@{/search}" method = "post">
-        <label for="searchTerm">Keyword:</label>
         <input type="text" name="searchTerm" id="searchTerm" />
     <input type="submit" value="Search" />
 </form>
+
+<h3>This is your profile page</h3>
+
+
+<div th:if = "${artist != null}">
+    <a>Your reviewed artists:</a>
+    <p th:text="${artist}"></p>
+    <p th:text="${reviewBody}"></p>
+</div>
 
 </body>
 </html>

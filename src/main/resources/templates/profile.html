@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h2>GNOTION</h2>
+<a href="/">Back to the Homepage</a>
+
+<form th:action="@{/search}" method = "post">
+        <input type="text" name="searchTerm" id="searchTerm" />
+    <input type="submit" value="Search" />
+</form>
+
+<h3>This is your profile page</h3>
+
+
+<div th:if = "${artist != null}">
+    <a>Your reviewed artists:</a>
+    <p th:text="${artist}"></p>
+    <p th:text="${reviewBody}"></p>
+</div>
+
+</body>
+</html>

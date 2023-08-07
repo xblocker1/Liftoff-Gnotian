@@ -4,11 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 
 @Controller
 public class HomeController {
+
 
     @GetMapping("")
     public String displayHomePage(){
@@ -23,13 +24,19 @@ public class HomeController {
 
     @GetMapping("profile")
     public String displayProfile(Model model){
+//        model.addAttribute("reviews", reviewRepository.findAll());
         return "profile";
     }
 
 
     @GetMapping("search")
-    public String displaySearch(Model model){
+    public String displaySearch(){
         return "search";
     }
 
+
+    @GetMapping("/user/register")
+    public String displayRegistrationPage(WebRequest request, Model model) {
+        return "/user/register";
+    }
 }

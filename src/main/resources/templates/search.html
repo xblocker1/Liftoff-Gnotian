@@ -21,13 +21,33 @@
 <div th:if = "${searchTerm != null}">
     <p th:text="${'You searched: ' + searchTerm}"></p>
 </div>
+<p>Leave a review of this artist!</p>
 <div>
     <form th:action="@{/profile}" method = "post">
-        <input type="text" name="artist" id="artist" /><br>
+        <label for="artist">Artist: </label>
+        <input type="text" th:value="${searchTerm}" name="artist" id="artist" /><br>
         <textarea name="reviewBody"></textarea><br>
         <input type="submit" value="Submit" />
     </form>
 </div>
+
+
+
+<!--attempted thymeleaf form... doesn't work-->
+<!--<form th:action="@{/profile}" method = "post">-->
+<!--    <div>-->
+<!--        <label th:for="artist">Artist Name</label>-->
+<!--        <input th:field="${review.artist}" />-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <label th:for="reviewBody">Review</label>-->
+<!--        <input th:field="${review.reviewBody}" />-->
+<!--    </div>-->
+
+<!--    <input type="submit" value="Submit Review" />-->
+<!--</form>-->
+
 
 <!--<form th:action="@{/profile}" method = "post">-->
 <!--    <div>-->

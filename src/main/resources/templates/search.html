@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h2>GNOTION</h2>
+<a href="">Back to the Homepage</a>
+<br>
+<a href="/profile">Your Profile</a>
+
+<div>
+    <form th:action="@{/search}" method = "post">
+        <input type="text" name="searchTerm" id="searchTerm" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
+<br>
+<div th:if = "${searchTerm != null}">
+    <p th:text="${'You searched: ' + searchTerm}"></p>
+</div>
+<div>
+    <form th:action="@{/profile}" method = "post">
+        <input type="text" name="artist" id="artist" /><br>
+        <textarea name="reviewBody"></textarea><br>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<!--<form th:action="@{/profile}" method = "post">-->
+<!--    <div>-->
+<!--        <label th:for="name">Artist Name</label>-->
+<!--        <input th:field="${artist.name}" />-->
+<!--        <input type="text" name="reviewedArtist" id="reviewedArtist" />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <input type="text" name="reviewBody" id="reviewBody" />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <input type="submit" value="Submit Review" />-->
+<!--    </div>-->
+<!--</form>-->
+
+
+</body>
+</html>

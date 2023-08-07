@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>GNOTION</h2>
-<a href="">Back to the Homepage</a>
+<a href="/">Back to the Homepage</a>
 <br>
 <a href="/profile">Your Profile</a>
 
@@ -23,7 +23,7 @@
 </div>
 <div>
     <form th:action="@{/profile}" method = "post">
-        <input type="text" name="artist" id="artist" /><br>
+        <input type="text" th:value=${searchTerm} name="artist" id="artist" /><br>
         <textarea name="reviewBody"></textarea><br>
         <input type="submit" value="Submit" />
     </form>

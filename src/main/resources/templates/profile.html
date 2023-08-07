@@ -13,12 +13,11 @@
     <input type="submit" value="Search" />
 </form>
 
-
 <h3>This is your profile page</h3>
 
 
 <div th:if = "${artist != null}">
-    <a>Your reviews:</a>
+    <a>Your reviewed artists:</a>
     <p th:text="${artist}"></p>
     <p th:text="${reviewBody}"></p>
 </div>

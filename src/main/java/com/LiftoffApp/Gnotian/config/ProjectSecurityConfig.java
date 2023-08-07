@@ -22,7 +22,7 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/profile").authenticated()
-                .requestMatchers("/", "/search").permitAll());
+                .requestMatchers("/", "/search", "/user/register").permitAll());
         http.formLogin(withDefaults());
         http.httpBasic(withDefaults());
         return http.build();

@@ -8,12 +8,25 @@ import java.util.List;
 @Entity
 public class Profile extends AbstractEntity{
 
+
+
     private List<Artist> artistTopFive = new ArrayList<>();
     private List<Review> userReviews = new ArrayList<>();
 
+public int userId;
+
+//public Profile(Artist artistTopFive, Review userReviews){
+//    super();
+//    this.artistTopFive = artistTopFive;
+//    this.userReviews = userReviews;
+
+//}
+
     public Profile(){
-        super();
+
     }
+
+
 
     public List<Artist> getArtistTopFive() { return artistTopFive; }
 

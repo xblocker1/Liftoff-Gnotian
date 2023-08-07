@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-
+<form th:action="@{/profile}" method = "post">
+    <p>
+        <label for="faveArtist">Enter your favorite artist:</label>
+        <input type="text" name="faveArtist" id="faveArtist" />
+    </p>
+    <input type="submit" value="Favorite Artist" />
+</form>
+<div th:if = "${faveArtist != null}">
+    <p th:text="${'Your fav artist: ' + faveArtist}"></p>
+</div>
 </body>
 </html>

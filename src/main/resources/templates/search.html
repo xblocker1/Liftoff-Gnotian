@@ -23,8 +23,8 @@
 </div>
 <div>
     <form th:action="@{/profile}" method = "post">
-        <input type="text" th:value=${searchTerm} name="artist" id="artist" /><br>
-        <textarea name="reviewBody"></textarea><br>
+        <input type="text" th:value=${searchTerm} th:field="${review.artist}" /><br>
+        <textarea th:field="${review.reviewBody}"></textarea><br>
         <input type="submit" value="Submit" />
     </form>
 </div>

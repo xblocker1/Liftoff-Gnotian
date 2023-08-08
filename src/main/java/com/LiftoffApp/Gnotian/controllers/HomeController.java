@@ -1,5 +1,6 @@
 package com.LiftoffApp.Gnotian.controllers;
 
+import com.LiftoffApp.Gnotian.models.Review;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class HomeController {
     @PostMapping("search")
     public String displaySearchResults(Model model, @RequestParam String searchTerm){
         model.addAttribute("searchTerm", searchTerm);
+        model.addAttribute(new Review());
         return "search";
     }
 

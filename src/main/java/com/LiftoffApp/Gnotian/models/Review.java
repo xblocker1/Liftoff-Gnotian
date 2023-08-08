@@ -14,14 +14,6 @@ public class Review extends AbstractEntity{
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
     public Review(){}
 
     public Review(String reviewText, Artist artist){
@@ -36,5 +28,13 @@ public class Review extends AbstractEntity{
 
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

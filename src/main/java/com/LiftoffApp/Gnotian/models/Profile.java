@@ -15,12 +15,12 @@ public class Profile extends AbstractEntity{
 
 public int userId;
 
-//public Profile(Artist artistTopFive, Review userReviews){
-//    super();
-//    this.artistTopFive = artistTopFive;
-//    this.userReviews = userReviews;
+public Profile(Artist artistTopFive, Review userReviews){
+    super();
+    this.artistTopFive = (List<Artist>) artistTopFive;
+    this.userReviews = (List<Review>) userReviews;
 
-//}
+}
 
     public Profile(){
 

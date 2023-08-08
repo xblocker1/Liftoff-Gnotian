@@ -29,19 +29,17 @@ return "profile";
 }
 
 @PostMapping("")
-    public String submitFaveArtist(Model model, @RequestParam String faveArtist) {
+    public String submitFaveArtist(Model model, @RequestParam String faveArtist, @RequestParam String faveArtistTwo) {
     model.addAttribute("faveArtist", faveArtist);
+    model.addAttribute("faveArtistTwo", faveArtistTwo);
     return "profile";
 }
 
-//@GetMapping("add")
-//public String displayAddProfilePicture(Model model){
-//    model.addAttribute(new Profile());
-//    return "profile/add";
-//}
+
+
 
 //@PostMapping("add")
-//    public String processAddProfilePicture(@ModelAttribute @Valid Profile newProfile
+//    public String processAddFaveArtistForm(@ModelAttribute @Valid Profile newProfile,
 //            Errors errors, Model model){
 //
 //    if(errors.hasErrors()){
@@ -50,5 +48,5 @@ return "profile";
 //    profileRepository.save(newProfile);
 //    return "redirect:";
 //}
-//
+
 }

@@ -23,25 +23,11 @@
 </div>
 <div>
     <form th:action="@{/profile}" method = "post">
-        <input type="text" th:value=${searchTerm} th:field="${review.artist}" /><br>
-        <textarea th:field="${review.reviewBody}"></textarea><br>
+<!--        <input th:field=${review.artist} /><br>-->
+        <input th:field=${review.reviewText} /><br>
         <input type="submit" value="Submit" />
     </form>
 </div>
-
-<!--<form th:action="@{/profile}" method = "post">-->
-<!--    <div>-->
-<!--        <label th:for="name">Artist Name</label>-->
-<!--        <input th:field="${artist.name}" />-->
-<!--        <input type="text" name="reviewedArtist" id="reviewedArtist" />-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <input type="text" name="reviewBody" id="reviewBody" />-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <input type="submit" value="Submit Review" />-->
-<!--    </div>-->
-<!--</form>-->
 
 
 </body>

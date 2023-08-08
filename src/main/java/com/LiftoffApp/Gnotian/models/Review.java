@@ -16,6 +16,7 @@ public class Review extends AbstractEntity{
 
     public Review(){}
 
+
     public Review(String reviewText, Artist artist){
         super();
         this.reviewText = reviewText;

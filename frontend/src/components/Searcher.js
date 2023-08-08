@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import axios from 'axios';
 import { render } from '@testing-library/react';
 
@@ -7,8 +7,16 @@ function Searcher(props) {
     const [tracks, setTracks] = useState([])
     const [artists, setArtists] = useState([])
     const [images, setImages] = useState([])
+    const [url, setUrl] = useState([])
 
     const access_token = props.token
+
+    // const getUrl = async () => {
+    //     const {url} = await axios.get(`https://api.spotify.com/v1/artists/${artistID}`)
+    //     .then((response) => {
+    //         setUrl(response.data.url);
+    //     })
+    // }
 
     
     const searchArtist = async () => {
@@ -23,6 +31,10 @@ function Searcher(props) {
                 type: "artist"
             }
         })
+        // .then((response) => {
+        //     setUrl(response.data.url);
+        // })
+        
         setArtists(data.artists.items)
 
         var artistID = data.artists.items[0].id
@@ -33,10 +45,11 @@ function Searcher(props) {
                 
             },
             params: {
-                limit:10,
+                limit:1,
                 market: 'US'
             }
         })
+        
         setTracks(artistTracks.data.tracks);
 
         var artistImage = await axios.get(`https://api.spotify.com/v1/artists/${artistID}`, {
@@ -50,7 +63,17 @@ function Searcher(props) {
             }
         })
         setImages(artistImage.data.artists)
+
     
+        var url = await axios.get(`https://api.spotify.com/v1/artists/${artistID}`, {
+            headers: {
+                Authorization: `Bearer ${access_token}`
+            }
+        })
+        .then((response) => {
+            setUrl(response.data.external_url);
+            console.log(response.data.external_urls)
+        })
     }
 
         const renderArtists = (index) => {
@@ -60,7 +83,7 @@ function Searcher(props) {
                 <div key={artist.id}>
                     {artist.images.length ? (<img width={"50%"} src={artist.images[0].url} alt=""/> ):( <div>No Image</div>
                     )}
-                <div>{artist.name}</div>
+                <div>{url}{artist.name}</div> 
                 </div>
             );
         } else {
@@ -68,7 +91,7 @@ function Searcher(props) {
         }
     };
 
-
+    
     return (
         <>
         <div className="SearchForm">

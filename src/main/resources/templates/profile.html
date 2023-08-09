@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h2>GNOTION</h2>
+<a href="/">Back to the Homepage</a>
+
+<form th:action="@{/search}" method = "post">
+        <input type="text" name="searchTerm" id="searchTerm" />
+    <input type="submit" value="Search" />
+</form>
+
+<h3>This is your profile page</h3>
+
+<div th:if = "${reviews != null}">
+    <a>Your reviews:</a>
+
+    <th:block th:each="review : ${reviews}">
+        <ul>
+<!--            the artist name on each review is commented out-->
+<!--            for now since all of that data is null (I've-->
+<!--            go to fix the review submission form so that it-->
+<!--            actually takes IN that info :) -->
+
+<!--            <li th:text="${review.artist.name}"></li>-->
+            <li th:text="${review.reviewText}"></li>
+        </ul>
+    </th:block>
+
+</div>
+
+</body>
+</html>

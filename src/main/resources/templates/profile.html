@@ -19,7 +19,15 @@
     <a>Your reviews:</a>
 
     <th:block th:each="review : ${reviews}">
-        <ul th:text="${review.reviewText}" ></ul>
+        <ul>
+<!--            the artist name on each review is commented out-->
+<!--            for now since all of that data is null (I've-->
+<!--            go to fix the review submission form so that it-->
+<!--            actually takes IN that info :) -->
+
+<!--            <li th:text="${review.artist.name}"></li>-->
+            <li th:text="${review.reviewText}"></li>
+        </ul>
     </th:block>
 
 </div>

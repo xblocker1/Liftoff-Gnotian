@@ -1,7 +1,6 @@
 package com.LiftoffApp.Gnotian.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -9,7 +8,6 @@ public class Review extends AbstractEntity{
 
     private String reviewText;
     @ManyToOne
-    @JoinColumn(name = "artist_id")
     private Artist artist;
 
     public Review(){}

@@ -63,23 +63,6 @@ function Searcher(props) {
         })
     }
 
-    //     const renderArtists = (index) => {
-    //         const artist = artists[index];
-    //         if (artist) {
-    //             return (
-    //             <div key={artist.id}>
-    //                 {artist.images.length ? (<img width={"50%"} src={artist.images[0].url} alt=""/> ):( <div>No Image</div>
-    //                 )}
-    //             <div>
-    //                 {artist.name}
-    //                 </div> 
-    //             </div>  
-    //         );
-    //     } else {
-    //         return null;
-    //     }
-    // };
-
     const renderArtists = (index) => {
         const artist = artists[index];
         if (artist) {

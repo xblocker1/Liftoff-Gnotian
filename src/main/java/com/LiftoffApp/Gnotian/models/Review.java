@@ -2,15 +2,13 @@ package com.LiftoffApp.Gnotian.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Review extends AbstractEntity{
 
     private String reviewText;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;
 

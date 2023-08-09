@@ -7,6 +7,7 @@ import com.LiftoffApp.Gnotian.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,18 +18,28 @@ import java.util.Optional;
 public class SearchController {
 
     @Autowired
-    private final ArtistRepository artistRepository;
+   ArtistRepository artistRepository;
     @Autowired
-    private final ReviewRepository reviewRepository;
+    ReviewRepository reviewRepository;
 
-    public SearchController(ArtistRepository artistRepository,
-                            ReviewRepository reviewRepository) {
-        this.artistRepository = artistRepository;
-        this.reviewRepository = reviewRepository;
+
+    @GetMapping("search")
+    public String displaySearch(Model model){
+        model.addAttribute(new Review());
+        model.addAttribute("artists", artistRepository.findAll());
+        return "search";
+    }
+
+    @PostMapping("search")
+    public String displaySearchResults(Model model, @RequestParam String searchTerm){
+        model.addAttribute("searchTerm", searchTerm);
+        model.addAttribute(new Review());
+        model.addAttribute("artists", artistRepository.findAll());
+        return "search";
     }
 
     @PostMapping("/profile")
-    public String addReview (@ModelAttribute Review newReview){
+    public String addReview (@ModelAttribute Review newReview, Model model){
 //        model.addAttribute("artist", artist);
 //        model.addAttribute("reviewBody", reviewBody);
 //        Optional<Artist> optArtist = artistRepository.findById(artist);
@@ -37,6 +48,7 @@ public class SearchController {
 //
 //        }
         reviewRepository.save(newReview);
+        model.addAttribute("reviews", reviewRepository.findAll());
         return "profile";
     }
 }

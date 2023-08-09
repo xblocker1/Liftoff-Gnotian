@@ -15,11 +15,13 @@
 
 <h3>This is your profile page</h3>
 
+<div th:if = "${reviews != null}">
+    <a>Your reviews:</a>
 
-<div th:if = "${artist != null}">
-    <a>Your reviewed artists:</a>
-    <p th:text="${artist}"></p>
-    <p th:text="${reviewBody}"></p>
+    <th:block th:each="review : ${reviews}">
+        <ul th:text="${review.reviewText}" ></ul>
+    </th:block>
+
 </div>
 
 </body>

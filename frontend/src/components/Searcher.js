@@ -10,14 +10,6 @@ function Searcher(props) {
     const [url, setUrl] = useState([])
 
     const access_token = props.token
-
-    // const getUrl = async () => {
-    //     const {url} = await axios.get(`https://api.spotify.com/v1/artists/${artistID}`)
-    //     .then((response) => {
-    //         setUrl(response.data.url);
-    //     })
-    // }
-
     
     const searchArtist = async () => {
     
@@ -31,10 +23,6 @@ function Searcher(props) {
                 type: "artist"
             }
         })
-        // .then((response) => {
-        //     setUrl(response.data.url);
-        // })
-        
         setArtists(data.artists.items)
 
         var artistID = data.artists.items[0].id
@@ -64,26 +52,49 @@ function Searcher(props) {
         })
         setImages(artistImage.data.artists)
 
-    
-        var url = await axios.get(`https://api.spotify.com/v1/artists/${artistID}`, {
+        var useUrl = await axios.get(`https://api.spotify.com/v1/artists/${artistID}`, {
             headers: {
                 Authorization: `Bearer ${access_token}`
             }
         })
         .then((response) => {
-            setUrl(response.data.external_url);
+            setUrl(response.data.external_urls);
             console.log(response.data.external_urls)
         })
     }
 
-        const renderArtists = (index) => {
-            const artist = artists[index];
-            if (artist) {
-                return (
+    //     const renderArtists = (index) => {
+    //         const artist = artists[index];
+    //         if (artist) {
+    //             return (
+    //             <div key={artist.id}>
+    //                 {artist.images.length ? (<img width={"50%"} src={artist.images[0].url} alt=""/> ):( <div>No Image</div>
+    //                 )}
+    //             <div>
+    //                 {artist.name}
+    //                 </div> 
+    //             </div>  
+    //         );
+    //     } else {
+    //         return null;
+    //     }
+    // };
+
+    const renderArtists = (index) => {
+        const artist = artists[index];
+        if (artist) {
+            return (
                 <div key={artist.id}>
-                    {artist.images.length ? (<img width={"50%"} src={artist.images[0].url} alt=""/> ):( <div>No Image</div>
-                    )}
-                <div>{url}{artist.name}</div> 
+                    <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
+                        {artist.images.length ? (
+                            <img width={'50%'} src={artist.images[0].url} alt=""/>
+                        ) : (
+                            <div>No Image</div>
+                        )}
+                        <div>
+                            {artist.name}
+                        </div>
+                    </a>
                 </div>
             );
         } else {

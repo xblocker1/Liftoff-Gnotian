@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-function Search(props) {
+function Search() {
+
   const { token } = useAuth();
 
   const navigate = useNavigate();
@@ -17,7 +20,7 @@ function Search(props) {
     const [artists, setArtists] = useState([])
     const [images, setImages] = useState([])
 
-    const access_token = props.token
+    const access_token = token
     
 
     const searchArtist = async () => {
@@ -69,6 +72,7 @@ function Search(props) {
 
     const handleNavigateToResults = (tracks, artists, images) => {
       navigate('/search-results', { state: { tracks, artists, images } });
+      console.log(access_token)
     };
 
 

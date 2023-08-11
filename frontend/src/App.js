@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { AuthProvider } from './components/AuthContext';
 import { useAuth } from './components/AuthContext';
 
+import axios from 'axios';
+
 import Profile from './components/Profile';
 import Home from './components/Home';
 import Search from './components/Search';
@@ -33,11 +35,15 @@ function App() {
 
 const Navigation = () => {
   const { token, logout } = useAuth(); 
+  
+  
+  
+  const CLIENT_ID = "42b1b2a5be1c405e906adcba3d6d1dd3"
+  const REDIRECT_URI = "http://localhost:3000"
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
+  const RESPONSE_TYPE = "token"
+  
 
-const CLIENT_ID = "42b1b2a5be1c405e906adcba3d6d1dd3"
-const REDIRECT_URI = "http://localhost:3000"
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
-const RESPONSE_TYPE = "token"
 
   return (
     <nav>
@@ -53,7 +59,7 @@ const RESPONSE_TYPE = "token"
           <div className="App">
             <header className="App-header">
               <div className="searchContainer">
-                <Search token={token} />
+                <Search  />
               </div>
             </header>
           </div>

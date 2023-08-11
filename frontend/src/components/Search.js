@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,17 +12,10 @@ function Search(props) {
 
   const navigate = useNavigate();
 
-
     const [SearchKey, setSearchKey] = useState("")
     const [tracks, setTracks] = useState([])
     const [artists, setArtists] = useState([])
     const [images, setImages] = useState([])
-    // const [reviews, setReviews] = useState([]);
-    const [showReviewModal, setShowReviewModal] = useState(false);
-    const [newReview, setNewReview] = useState({
-      artist: '',
-      body: '',
-    });
 
     const access_token = props.token
     
@@ -80,32 +71,6 @@ function Search(props) {
       navigate('/search-results', { state: { tracks, artists, images } });
     };
 
-
-
-    const handleAddReview = () => {
-        setShowReviewModal(true);
-      };
-
-    const handleSaveReview = () => {
-        // we need to send a backend request to update the user's profile
-        // Check if the artist and body fields are not empty
-     if (!newReview.artist || !newReview.body) {
-       alert("Please fill in both the Artist and Review fields.");
-       return;
-     }
-   
-     // Add the review to the reviews state
-    //  const updatedReviews = [...reviews, newReview];
-    //  setReviews(updatedReviews);
-    //  // Clear the newReview state for the next time
-    //  setNewReview({
-    //    artist: '',
-    //    body: '',
-    //  });
-   
-     // Close the modal after saving the review
-     setShowReviewModal(false);
-   };
 
   return (
 

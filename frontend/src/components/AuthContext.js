@@ -26,9 +26,6 @@ export const AuthProvider = ({ children }) => {
     setToken('');
     window.localStorage.removeItem("token");
 
-    const navigate = useNavigate();
-    navigate('/');
-
   };
 
   const contextValue = {

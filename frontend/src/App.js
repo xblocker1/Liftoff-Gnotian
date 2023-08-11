@@ -32,9 +32,12 @@ function App() {
 }
 
 const Navigation = () => {
-  const { logout, token } = useAuth();
+  const { token, logout } = useAuth(); 
 
-  const AUTH_URL = `https://accounts.spotify.com/authorize?client_id=42b1b2a5be1c405e906adcba3d6d1dd3&redirect_uri=http://localhost:3000/&response_type=token`;
+const CLIENT_ID = "42b1b2a5be1c405e906adcba3d6d1dd3"
+const REDIRECT_URI = "http://localhost:3000"
+const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
+const RESPONSE_TYPE = "token"
 
   return (
     <nav>
@@ -66,7 +69,9 @@ const Navigation = () => {
         <li className="nav-item">
           {!token ? (
             <div>
-              <a href={AUTH_URL}>Login</a>
+                 <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>
+                Login
+              </a>
             </div>
           ) : (
             <div>

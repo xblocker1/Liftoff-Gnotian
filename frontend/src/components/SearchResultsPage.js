@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 
 function SearchResultsPage() {
@@ -15,6 +16,25 @@ function SearchResultsPage() {
       uri: ''
     });
 
+    useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://example.com/api/reviews', {
+        headers: {
+          // Any custom headers you need
+        },
+      });
+
+      setReviews(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+}, []);
+
+
 
 
   const renderArtists = (index) => {
@@ -22,18 +42,27 @@ function SearchResultsPage() {
     if (artist) {
       return (
         <div key={artist.id}>
-          {artist.images.length ? (
-            <img width={"25%"} src={artist.images[0].url} alt="" />
-          ) : (
-            <div>No Image</div>
-          )}
-          <div>{artist.name}</div>
+          <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
+            {artist.images.length ? (
+              <img width={'50%'} src={artist.images[0].url} alt=""/>
+              ) : (
+              <div>No Image</div>
+              )}
+              <div>
+                {artist.name}
+              </div>
+              </a>
           {tracks.map((track) => (
             <div key={track.id}>
               <ul>
                 <li>{track.name}</li>
-                <li>{track.uri}</li>
               </ul>
+                {reviews.filter((review) => review.uri === track.uri).map((review) => (
+              <div key={review.id}>
+                <p>Artist: {review.artist}</p>
+                <p>Review: {review.body}</p>
+              </div>
+            ))}
               <button onClick={() => handleAddReview(track.uri, artists[0].name)}>Add Review</button>
             </div>
           ))}
@@ -45,35 +74,40 @@ function SearchResultsPage() {
   };
 
 
-   const handleAddReview = (trackUri, artistName) => {
+const handleAddReview = (trackUri, artistName) => {
   setShowReviewModal(true);
-
   setNewReview({ ...newReview, artist: artistName, uri: trackUri });
 };
 
 
-    const handleSaveReview = () => {
-        // we need to send a backend request to update the user's profile
-        // Check if the artist and body fields are not empty
-     if (!newReview.artist || !newReview.body) {
-       alert("Please fill in both the Artist and Review fields.");
-       return;
-     }
-   
-     // Add the review to the reviews state
-     const updatedReviews = [...reviews, newReview];
-     setReviews(reviews =>[...reviews, updatedReviews]);
 
-     // Clear the newReview state for the next time
-     setNewReview({
-       artist: '',
-       body: '',
-       uri: '',
-     });
-   
-     // Close the modal after saving the review
-     setShowReviewModal(false);
-   };
+const handleSaveReview = () => {
+  if (!newReview.body) {
+    alert("Please fill in both the Artist and Review fields.");
+    return;
+  }
+  
+  axios.post('https://example.com/api/reviews', newReview)
+  .then(response => {
+    // Handle success, e.g., update state or show a success message
+        setReviews([...reviews, newReview]);
+        console.log('Review saved successfully:', response.data);
+      })
+      .catch(error => {
+        // Handle error, e.g., show an error message
+        console.error('Error saving review:', error);
+      });
+
+  // Clear the newReview state for the next time
+  setNewReview({
+    artist: "",
+    body: "",
+    uri: "",
+  });
+
+  // Close the modal after saving the review
+  setShowReviewModal(false);
+};
 
 
    

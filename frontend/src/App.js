@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ function App() {
 }
 
 const Navigation = () => {
-  const { token, logout } = useAuth(); 
+  const { token, logout, profileData } = useAuth(); 
   
   
   
@@ -42,7 +42,6 @@ const Navigation = () => {
   const REDIRECT_URI = "http://localhost:3000"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
-  
 
 
   return (
@@ -67,8 +66,17 @@ const Navigation = () => {
 
         <li className="navbar-nav ms-auto">
           <Link className="nav-link" to="/profile">
-            <img src={profilepic} width="50px" height="50px" alt="logo" />
+            {!token ? (
+              <div>
+              <img src={profilepic} width="50px" height="50px"/>
+              <span>Profile</span>
+              </div>
+            ) : (
+              <div>
+            <img src={profileData.image} width="50px" height="50px"/>
             <span>Profile</span>
+            </div>
+            )}
           </Link>
         </li>
 

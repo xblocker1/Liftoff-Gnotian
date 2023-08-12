@@ -16,7 +16,7 @@ function Profile() {
     }
 
     if(!artists.length) {
-fetchArtistsData()
+    fetchArtistsData()
     }
 
   }, []);
@@ -24,10 +24,13 @@ fetchArtistsData()
 
   const fetchArtistsData = async () => {
       try {
-        const { data } = await axios.get('https://api.spotify.com/v1/me/top/tracks?limit=5', {
+        const { data } = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
           headers: {
-            'Authorization': `Bearer ${token}`,
-          },
+          'Authorization': `Bearer ${token}`,
+        },
+        params: {
+            limit: 5,
+          }
         });
 
         // Extract artist names and update the artist state

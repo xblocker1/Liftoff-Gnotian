@@ -11,12 +11,15 @@ public class Review extends AbstractEntity{
     private String body;
     private String uri;
 
+    private String user; //spotify user id
+
     public Review(){}
 
-    public Review(String artist, String body, String uri) {
+    public Review(String artist, String body, String uri, String user) {
         this.artist = artist;
         this.body = body;
         this.uri = uri;
+        this.user = user;
     }
 
     public String getArtist() {
@@ -41,5 +44,13 @@ public class Review extends AbstractEntity{
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

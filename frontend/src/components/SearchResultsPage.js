@@ -88,7 +88,7 @@ const handleSaveReview = () => {
     return;
   }
   
-  axios.post('https://example.com/api/reviews', newReview)
+  axios.post('http://localhost:8080/api/reviews', newReview)
   .then(response => {
     // Handle success, e.g., update state or show a success message
         setReviews([...reviews, newReview]);

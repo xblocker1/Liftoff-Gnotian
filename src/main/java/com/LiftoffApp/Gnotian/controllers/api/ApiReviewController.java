@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 4000)
+@CrossOrigin(origins = "http://localhost:3000/", maxAge = 400000)
 @RestController
 @RequestMapping("/api/reviews")
 public class ApiReviewController {

@@ -7,16 +7,17 @@ import jakarta.persistence.ManyToOne;
 public class Review extends AbstractEntity{
 
     private String reviewText;
-    @ManyToOne
-    private Artist artist;
+
+    private String artistName;
+
+    private Long artistUid;
 
     public Review(){}
 
-
-    public Review(String reviewText, Artist artist){
-        super();
+    public Review(String reviewText, String artistName, Long artistUid) {
         this.reviewText = reviewText;
-        this.artist = artist;
+        this.artistName = artistName;
+        this.artistUid = artistUid;
     }
 
     public String getReviewText() {
@@ -27,11 +28,19 @@ public class Review extends AbstractEntity{
         this.reviewText = reviewText;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public String getArtistName() {
+        return artistName;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
+    }
+
+    public Long getArtistUid() {
+        return artistUid;
+    }
+
+    public void setArtistUid(Long artistUid) {
+        this.artistUid = artistUid;
     }
 }

@@ -6,32 +6,51 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Review extends AbstractEntity{
 
-    private String reviewText;
-    @ManyToOne
-    private Artist artist;
+
+    private String artist;
+    private String body;
+    private String uri;
+
+    private String user; //spotify user id
 
     public Review(){}
 
-
-    public Review(String reviewText, Artist artist){
-        super();
-        this.reviewText = reviewText;
+    public Review(String artist, String body, String uri, String user) {
         this.artist = artist;
+        this.body = body;
+        this.uri = uri;
+        this.user = user;
     }
 
-    public String getReviewText() {
-        return reviewText;
-    }
-
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
-    }
-
-    public Artist getArtist() {
+    public String getArtist() {
         return artist;
     }
 
-    public void setArtist(Artist artist) {
+    public void setArtist(String artist) {
         this.artist = artist;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

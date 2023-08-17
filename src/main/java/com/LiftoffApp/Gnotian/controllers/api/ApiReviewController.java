@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/", maxAge = 400000)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 400000)
 @RestController
 @RequestMapping("/api/reviews")
 public class ApiReviewController {
@@ -26,16 +26,16 @@ public class ApiReviewController {
         return new ResponseEntity<>(artistReviews, HttpStatus.OK);
 
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getReviewsByUser(@PathVariable String user){
-        List<Review> userReviews = reviewRepository.findByUser(user);
-        return new ResponseEntity<>(userReviews, HttpStatus.OK);
-    }
-    @GetMapping("{uid}")
-    public ResponseEntity<?> getReviewsBySong(@PathVariable String uid){
-        List<Review> songReviews = reviewRepository.findByUid(uid);
-        return new ResponseEntity<>(songReviews, HttpStatus.OK);
-    }
+//    @GetMapping("/{id}")  // this path needs to change though, it conflicts with the other Get mappings
+//    public ResponseEntity<?> getReviewsByUser(@PathVariable String user){
+//        List<Review> userReviews = reviewRepository.findByUser(user);
+//        return new ResponseEntity<>(userReviews, HttpStatus.OK);
+//    }
+//    @GetMapping("{uri}")  // this path needs to change though, it conflicts with the other Get mappings
+//    public ResponseEntity<?> getReviewsBySong(@PathVariable String uri){
+//        List<Review> songReviews = reviewRepository.findByUri(uri);
+//        return new ResponseEntity<>(songReviews, HttpStatus.OK);
+//    }
 
     @PostMapping
     public ResponseEntity<?> newReview (@RequestBody Review newReview){

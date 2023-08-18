@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-
+import '../App.css';
 import axios from 'axios';
 
 
@@ -42,21 +42,22 @@ function SearchResultsPage() {
     const artist = artists[index];
     if (artist) {
       return (
+        <>
         <div key={artist.id}>
-          <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
+          <a href={artist.external_urls.spotify} className='artistImage' target="_blank" rel="noopener noreferrer">
             {artist.images.length ? (
-              <img width={'50%'} src={artist.images[0].url} alt=""/>
+              <img src={artist.images[0].url} alt=""/>
               ) : (
               <div>No Image</div>
               )}
-              <div>
+              <div className='artistImage'> 
                 {artist.name}
               </div>
               </a>
           {tracks.map((track) => (
             <div key={track.id}>
               <ul>
-                <li>{track.name}</li>
+                <li className='trackList'>{track.name}</li>
               </ul>
                 {reviews.filter((review) => review.uri === track.uri).map((review) => (
               <div key={review.id}>
@@ -68,6 +69,7 @@ function SearchResultsPage() {
             </div>
           ))}
         </div>
+        </>
       );
     } else {
       return null;

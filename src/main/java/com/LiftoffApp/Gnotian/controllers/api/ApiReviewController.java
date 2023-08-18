@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 400000)
 @RestController
@@ -20,11 +19,10 @@ public class ApiReviewController {
         this.reviewRepository = reviewRepository;
     }
 
-    @GetMapping("/{artist}")
-    public ResponseEntity<?> getReviewsByArtist(@PathVariable String artist) {
-        List<Review> artistReviews = reviewRepository.findByArtist(artist);
+    @GetMapping("")
+    public ResponseEntity<?> getReviewsByArtist() {
+        Iterable<Review> artistReviews = reviewRepository.findAll();
         return new ResponseEntity<>(artistReviews, HttpStatus.OK);
-
     }
 //    @GetMapping("/{id}")  // this path needs to change though, it conflicts with the other Get mappings
 //    public ResponseEntity<?> getReviewsByUser(@PathVariable String user){

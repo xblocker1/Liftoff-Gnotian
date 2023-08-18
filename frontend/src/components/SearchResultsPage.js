@@ -20,10 +20,8 @@ function SearchResultsPage() {
     useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://example.com/api/reviews', {
-        headers: {
-          // Any custom headers you need
-        },
+      const response = await axios.get('http://localhost:8080/api/reviews', {
+
       });
 
       setReviews(response.data);
@@ -42,10 +40,10 @@ function SearchResultsPage() {
     const artist = artists[index];
     if (artist) {
       return (
-        <div key={artist.id}>
+        <div className="container text-center" key={artist.id}>
           <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
             {artist.images.length ? (
-              <img width={'50%'} src={artist.images[0].url} alt=""/>
+              <img width={'25%'} src={artist.images[0].url} alt=""/>
               ) : (
               <div>No Image</div>
               )}
@@ -53,18 +51,27 @@ function SearchResultsPage() {
                 {artist.name}
               </div>
               </a>
+            <br></br>              
           {tracks.map((track) => (
             <div key={track.id}>
-              <ul>
-                <li>{track.name}</li>
+              <br></br>
+              <ul className="list-group align-items-center">
+                <li className="list-group-item list-group-item-primary">{track.name}</li>
               </ul>
+                <br></br>
+
                 {reviews.filter((review) => review.uri === track.uri).map((review) => (
-              <div key={review.id}>
-                <p>Artist: {review.artist}</p>
-                <p>Review: {review.body}</p>
+                  <div  key={review.id}>
+                <ul className="list-group align-items-center">
+                  <br></br>
+                  <li className="list-group-item list-group-item-secondary">Artist: {review.artist}</li>
+                  <li className="list-group-item list-group-item-secondary">Review: {review.body}</li>
+                  <br></br>
+                </ul>
               </div>
             ))}
-              <button onClick={() => handleAddReview(track.uri, artists[0].name)}>Add Review</button>
+            <button onClick={() => handleAddReview(track.uri, artists[0].name)}>Add Review</button>
+            <br></br>
             </div>
           ))}
         </div>
@@ -78,6 +85,7 @@ function SearchResultsPage() {
 const handleAddReview = (trackUri, artistName) => {
   setShowReviewModal(true);
   setNewReview({ ...newReview, artist: artistName, uri: trackUri });
+  console.log(reviews)
 };
 
 

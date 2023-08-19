@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
+
 // Created by chris
 function Profile() {
   const { token, profileData, fetchProfileData } = useAuth();
 
-    const access_token = token;
-
-
+  const access_token = token;
 
   const [artists, setArtists] = useState([]);
 

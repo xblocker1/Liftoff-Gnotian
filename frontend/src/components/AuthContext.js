@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         },
       });
 
+      console.log(data)
       // Update the profile data state with additional details if available
       setProfileData({
         name: data.display_name,

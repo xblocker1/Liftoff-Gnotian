@@ -8,6 +8,7 @@ import axios from 'axios';
 
 function Search() {
   const { token } = useAuth();
+  
   const access_token = token;
 
   const navigate = useNavigate();

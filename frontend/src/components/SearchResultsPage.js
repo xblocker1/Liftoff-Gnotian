@@ -18,18 +18,17 @@ function SearchResultsPage() {
     });
 
     useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/reviews', {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:8080/api/reviews', {
+          });
+          setReviews(response.data);
+        } catch (error) {
+          console.error(error)
+        }
+    };
 
-      });
-
-      setReviews(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+    
   fetchData();
 }, []);
 

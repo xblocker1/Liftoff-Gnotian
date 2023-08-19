@@ -8,6 +8,7 @@ import axios from 'axios';
 
 function Search() {
   const { token } = useAuth();
+  const access_token = token;
 
   const navigate = useNavigate();
 
@@ -16,7 +17,6 @@ function Search() {
   const [artists, setArtists] = useState([]);
   const [images, setImages] = useState([]);
 
-  const access_token = token;
 
   const fetchData = async () => {
     try {
@@ -66,7 +66,6 @@ function Search() {
 
   const handleNavigateToResults = (tracks, artists, images) => {
     navigate('/search-results', { state: { tracks, artists, images } });
-    console.log(access_token);
   };
 
   return (

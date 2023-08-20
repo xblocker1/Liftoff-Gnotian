@@ -13,7 +13,9 @@ function Home() {
 
   return (
     <div>
-      {!token ? <h1>Login</h1> : <h1>Hi there</h1>}
+      {!token ? <h1>Login</h1> : <h1>
+        
+        </h1>}
     </div>
   );
 }

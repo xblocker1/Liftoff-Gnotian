@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
-
+import '../App.css';
 import axios from 'axios';
 
 
@@ -47,7 +47,7 @@ function SearchResultsPage() {
               ) : (
               <div>No Image</div>
               )}
-              <div>
+              <div className='artistImage'> 
                 {artist.name}
               </div>
               </a>
@@ -57,6 +57,7 @@ function SearchResultsPage() {
               <br></br>
               <ul className="list-group align-items-center">
                 <li className="list-group-item list-group-item-primary">{track.name}</li>
+          
               </ul>
                 <br></br>
 
@@ -75,6 +76,7 @@ function SearchResultsPage() {
             </div>
           ))}
         </div>
+        </>
       );
     } else {
       return null;

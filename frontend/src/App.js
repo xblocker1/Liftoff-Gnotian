@@ -11,7 +11,6 @@ import axios from 'axios';
 import Profile from './components/Profile';
 import Home from './components/Home';
 import Search from './components/Search';
-import LoginPage from './components/Login';
 import SearchResultsPage from './components/SearchResultsPage';
 import gnotianlogo from './assets/gnotianlogo.png';
 import profilepic from './assets/profilepic.png';
@@ -24,7 +23,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/login" element={<LoginPage />} />
             <Route path="/search-results" element={<SearchResultsPage />} />
           </Routes>
         </Layout>
@@ -68,12 +66,12 @@ const Navigation = () => {
           <Link className="nav-link" to="/profile">
             {!token ? (
               <div>
-              <img src={profilepic} width="50px" height="50px"/>
-              <span>Profile</span>
+              <img class="avatar" src={profilepic} width="50px" height="50px"/>
+              <span>{profileData.name}</span>
               </div>
             ) : (
               <div>
-            <img src={profileData.image} width="50px" height="50px"/>
+            <img class="avatar" src={profileData.image} width="50px" height="50px"/>
             <span>Profile</span>
             </div>
             )}

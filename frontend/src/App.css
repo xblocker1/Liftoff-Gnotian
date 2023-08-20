@@ -11,3 +11,7 @@
         margin-right: auto;
         width: 30%;
     }
+
+    .avatar {
+        border-radius: 50%;
+    }

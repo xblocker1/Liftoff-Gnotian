@@ -38,7 +38,7 @@ public class ApiReviewController {
     @PostMapping
     public ResponseEntity<?> newReview (@RequestBody Review newReview){
         reviewRepository.save(newReview);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 }

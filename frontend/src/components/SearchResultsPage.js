@@ -40,6 +40,7 @@ function SearchResultsPage() {
     const artist = artists[index];
     if (artist) {
       return (
+        <>
         <div className="container text-center" key={artist.id}>
           <a href={artist.external_urls.spotify} target="_blank" rel="noopener noreferrer">
             {artist.images.length ? (

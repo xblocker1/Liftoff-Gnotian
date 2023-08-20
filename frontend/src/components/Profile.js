@@ -5,7 +5,9 @@ import { useAuth } from './AuthContext';
 function Profile() {
   const { token, profileData, fetchProfileData } = useAuth();
 
-  console.log("before", token)
+    const access_token = token;
+
+
 
   const [artists, setArtists] = useState([]);
 
@@ -24,13 +26,14 @@ function Profile() {
 
   const fetchArtistsData = async () => {
       try {
-        const { data } = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
-          headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        params: {
-            limit: 5,
-          }
+            const { data } = await axios.get('https://api.spotify.com/v1/me/top/artists', {
+      headers: {
+        'Authorization': `Bearer ${access_token}`
+      },
+      params: {
+        time_range: 'long_term',
+        limit: 5
+      }
         });
 
         // Extract artist names and update the artist state
@@ -38,6 +41,7 @@ function Profile() {
         setArtists(artistNames);
       } catch (error) {
         console.error(error);
+        // setArtists(['Imagine Dragons', 'Mumford & Sons', 'Sara Bareilles', 'Eminem', 'The Lumineers'])
       }
     };
 

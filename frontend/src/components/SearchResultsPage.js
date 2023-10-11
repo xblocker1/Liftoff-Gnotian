@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
 import { useLocation } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
 import '../App.css';
@@ -7,6 +8,7 @@ import axios from 'axios';
 
 function SearchResultsPage() {
   const location = useLocation();
+  const { token, profileData, fetchProfileData } = useAuth()
   const { state } = location;
   const { tracks, artists } = state;
     const [reviews, setReviews] = useState([]);
@@ -60,19 +62,18 @@ function SearchResultsPage() {
                 <li className="list-group-item list-group-item-primary">{track.name}</li>
           
               </ul>
-                <br></br>
 
                 {reviews.filter((review) => review.uri === track.uri).map((review) => (
                   <div  key={review.id}>
                 <ul className="list-group align-items-center">
                   <br></br>
-                  <li className="list-group-item list-group-item-secondary">Artist: {review.artist}</li>
+                  <li className="list-group-item list-group-item-secondary">Ueser: {review.artist}</li>
                   <li className="list-group-item list-group-item-secondary">Review: {review.body}</li>
                   <br></br>
                 </ul>
               </div>
             ))}
-            <button onClick={() => handleAddReview(track.uri, artists[0].name)}>Add Review</button>
+            <button onClick={() => handleAddReview(track.uri, profileData.name)}>Add Review</button>
             <br></br>
             </div>
           ))}
@@ -85,9 +86,9 @@ function SearchResultsPage() {
   };
 
 
-const handleAddReview = (trackUri, artistName) => {
+const handleAddReview = (trackUri, profileName) => {
   setShowReviewModal(true);
-  setNewReview({ ...newReview, artist: artistName, uri: trackUri });
+  setNewReview({ ...newReview, artist: profileName, uri: trackUri });
   console.log(reviews)
 };
 
@@ -95,7 +96,7 @@ const handleAddReview = (trackUri, artistName) => {
 
 const handleSaveReview = () => {
   if (!newReview.body) {
-    alert("Please fill in both the Artist and Review fields.");
+    alert("Please fill in both the Review fields.");
     return;
   }
   
@@ -134,14 +135,12 @@ const handleSaveReview = () => {
          <Modal.Body>
            <div className="form-group">
             
-             <label htmlFor="artist">Artist:</label>
+             <label htmlFor="artist">Ueser: {profileData.name}</label>
              <input
-              type="text"
+              type="hidden"
               className="form-control"
               id="artist"
-              placeholder={artists[0].name}
               value={newReview.artist}
-              onChange={(e) => setNewReview({ ...newReview, artist: e.target.value })}
             />
           </div>
           <div className="form-group">

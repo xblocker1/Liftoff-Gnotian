@@ -22,24 +22,27 @@ function Profile() {
   }, []);
 
 
-  const fetchArtistsData = async () => {
+const fetchArtistsData = async () => {
+
+  console.log("fetchArtistsData", token)
       try {
-        const { data } = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
-          headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        params: {
-            limit: 5,
-          }
+            const artistResponse = await axios.get('https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=5', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+  
         });
 
         // Extract artist names and update the artist state
-        const artistNames = data.items.map(item => item.artists[0].name);
+
+        const artistNames = artistResponse;
         setArtists(artistNames);
       } catch (error) {
         console.error(error);
+        // setArtists(['Imagine Dragons', 'Mumford & Sons', 'Sara Bareilles', 'Eminem', 'The Lumineers'])
       }
     };
+
 
   
 
